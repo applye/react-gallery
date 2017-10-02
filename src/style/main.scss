@@ -1,8 +1,35 @@
+@font-face {
+    font-family: 'icons-turn-arrow';
+    src: url("../fonts/icons/turn-arrow.eot") format("embedded-opentype"), url("../fonts/icons/turn-arrow.woff") format("woff"),
+    url("../fonts/icons/turn-arrow.ttf") format("truetype"), url("../fonts/icons/turn-arrow.svg") format("svg");
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, 
+details, figcaption, figure, footer, header, hgroup, menu, nav, section, select { margin: 0; padding: 0;}
+
 html,body {
     background: #222;
     width: 100%;
     height: 100%;
+    -webkit-text-size-adjust:none;
+    -moz-text-size-adjust:none;
+    -webkit-text-size-adjust:none;
+    -o-text-size-adjust:none;
+    text-size-adjust:none;
 }
+
+*,*:after,*:before{
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;  
+}
+
+
+ul, ol { padding: 0; list-style-type: none;}
+a { text-decoration: none; color: inherit; cursor: pointer;}
+
 
 .content {
     width: 100%;
@@ -12,7 +39,7 @@ html,body {
 .stage {
     position: relative;
     width: 100%;
-    height: 680px;
+    height: 100%;
 }
 
 /* stage    end*/
@@ -28,6 +55,53 @@ html,body {
             width: 320px;
             height: 360px;
             margin: 0 40px;
+            padding: 40px;                   
+            background-color: #fff;
+            position: absolute;
+            cursor: pointer;     
+            transform-origin: 0 50% 0;
+            transform-style: preserve-3d;
+            transition: transform .6s ease-in-out, left .6s ease-in-out, top .6s ease-in-out;
+             &.is-inverse {              
+                -moz-transform: translate(320px) rotateY(180deg);
+                -webkit-transform: translate(320px) rotateY(180deg);
+                -o-transform: translate(320px) rotateY(180deg);
+                transform: translate(320px) rotateY(180deg);
+            }
+        }
+        figcaption {
+            text-align: center;
+            .img-title {
+                margin: 20px 0 0 0;
+                color:#a7a0a2;
+                font-size: 16px;
+            }
+
+            .img-back {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+                padding: 50px 40px;
+                overflow: auto;
+
+                color: #a7a0a2;
+                font-size: 22px;
+                line-height: 1.25;
+                text-align: left;
+
+                background-color: #fff;
+
+                box-sizing: border-box;
+                transform: rotateY(180deg) translateZ(1px);                
+                backface-visibility: hidden;
+
+                p{
+                    margin: 0;
+                }   
+            }
         }
     }
 }
@@ -41,4 +115,39 @@ html,body {
     z-index: 101;
     width: 100%;
     text-align: center;
+    @at-root {
+        .controll-span {
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            margin: 0 5px;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #aaa;
+            border-radius: 50%;
+            cursor:pointer;
+            transform: scale(0.5);
+            transition: transform .6s ease-in-out, background-color 0.3s;
+            &.is-center {
+                transform: scale(1);
+                background-color: #888;
+                &::after {
+                    font-family: "icons-turn-arrow";
+                    content: "\e600";
+                    color: #fff;
+                    font-size: 80%;
+                    line-height: 30px;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+                &.is-inverse {
+                    background-color: #555;                                   
+                    -moz-transform: rotateY(180deg) translateZ(1px);
+                    -webkit-transform: rotateY(180deg) translateZ(1px);
+                    -o-transform:  rotateY(180deg) translateZ(1px);
+                     transform: rotateY(180deg) translateZ(1px);  
+                }
+            }
+        }
+    }
 }

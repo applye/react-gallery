@@ -1,6 +1,6 @@
 const webpack = require('webpack'); //to access built-in plugins
 const path = require('path');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
     //devtool: 'cheap-source-map',  vtool: "cheap-module-source-map", // 生产环境推荐,
     context: __dirname + '/src',
@@ -10,7 +10,7 @@ const config = {
         port: 8081
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),  
         filename: 'bundle.js'
     },
     module: {
@@ -39,19 +39,26 @@ const config = {
         {
             test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
             loader: 'url-loader?limit=8192'
-        },
-         {
-            test: /\.(eot|woff|svg|ttf|woff2|gif|appcache|mp3)(\?|$)/,
-            exclude: /node_modules/,
-            loader: 'file-loader?name=[name].[ext]',
         }
+        // ,
+        //  {
+        //     test: /\.(eot|woff|svg|ttf|woff2|gif|appcache|mp3)(\?|$)/,
+        //     exclude: /node_modules/,
+        //     loader: 'file-loader?name=[name].[ext]',
+        // }
         // ,
         // {
         //     test:/\.less$/,
         //     loader: 'style-loader!css-loader!less-loader'
         // }
         ]
-    }
+    },
+        plugins: [       
+            new webpack.optimize.UglifyJsPlugin(),          
+            new HtmlWebpackPlugin({
+                template: 'index.html'
+            })
+        ]
 };
 
 module.exports = config;
